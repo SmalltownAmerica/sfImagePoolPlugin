@@ -133,6 +133,11 @@ class ImagePoolImageMagickAdapter extends sfImageMagickAdapter
       {
         $command .= ' -unsharp ' . escapeshellarg($this->options['sharpen']);
       }
+
+      if (isset($this->options['progressive']) && $this->options['progressive'])
+      {
+        $command .= ' -interlace line ';
+      }
     }
 
     if (isset($this->options['auto_orient']) && $this->options['auto_orient'])
