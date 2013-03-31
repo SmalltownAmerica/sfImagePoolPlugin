@@ -129,9 +129,9 @@ class sfImagePoolResizer
      * @see   sfImagePoolCacheInterface::getDestination()
      * @return sfThumbnail
      */
-    public function save($save_path)
+    public function save($save_path, $targetMime = null)
     {
-        $this->thumb->save($save_path);
+        $this->thumb->save($save_path, $targetMime);
         return $this->thumb;
     }
     

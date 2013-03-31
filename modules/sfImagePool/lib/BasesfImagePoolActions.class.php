@@ -55,7 +55,7 @@ class BasesfImagePoolActions extends sfActions
           if (!($image_data = $cache->exists()))
           {
             // create thumbnail
-            $thumb = $resizer->save($cache->getDestination());
+            $thumb = $resizer->save($cache->getDestination(), $sf_pool_image->getMimeType());
           
             // get thumbnail data and spit out
             $image_data = $thumb->toString();
