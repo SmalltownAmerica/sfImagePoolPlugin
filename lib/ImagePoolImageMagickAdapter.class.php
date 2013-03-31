@@ -140,6 +140,11 @@ class ImagePoolImageMagickAdapter extends sfImageMagickAdapter
       $command .= ' -auto-orient ';
     }
 
+    if (isset($this->options['strip']) && $this->options['strip'])
+    {
+      $command .= ' -strip ';
+    }
+
     // extract images such as pages from a pdf doc
     $extract = '';
     if (isset($this->options['extract']) && is_int($this->options['extract']))
