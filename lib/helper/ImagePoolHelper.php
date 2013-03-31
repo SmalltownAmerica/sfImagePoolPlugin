@@ -44,7 +44,7 @@ function pool_image_tag($invoker, $dimensions = 200, $options = 'crop', $attribu
 
   if (is_array($options))
   {
-    $method = array_key_exists('method',$options) ? $options['method'] : 'crop';
+    $method   = array_key_exists('method',$options) ? $options['method'] : 'crop';
   }
   else
   {
@@ -52,11 +52,18 @@ function pool_image_tag($invoker, $dimensions = 200, $options = 'crop', $attribu
     $options  = array();
   }
 
-  $pool_image_uri = pool_image_uri($image, array($w,$h), $method, $absolute);
+  $options['retina'] = array_key_exists('retina',$options)
+    ? $options['retina']
+    : sfConfig::get('app_sf_image_pool_retina', false);
 
   $options['require_size'] = array_key_exists('require_size',$options)
     ? $options['require_size']
     : sfConfig::get('app_sf_image_pool_require_size', true);
+
+  $scale_w = $options['retina'] ? $w * 2 : $w;
+  $scale_h = $options['retina'] ? $h * 2 : $h;
+
+  $pool_image_uri = pool_image_uri($image, array($scale_w,$scale_h), $method, $absolute);
 
   // We need the actual image dimensions so the space is correct on the page
   if ($image && array_key_exists('require_size',$options) && true == $options['require_size'])
