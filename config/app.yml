@@ -26,7 +26,8 @@ all:
     # adapter:            sfGDAdapter
     adapter_options:
       # Sharpen scaled/cropped images - only works for ImagePoolImageMagickAdapter
-      sharpen:      true
+      # Passed verbatim to ImageMagick's "-unsharp" parameter
+      sharpen:      "1.5x1.2+0.7+0.10"
       # Sharpening is CPU-intensive, so you can prefix the "convert" command
       # with nice -n19 to make sure other processes get priority over the CPU
       # convert:        nice -n19 /usr/bin/convert

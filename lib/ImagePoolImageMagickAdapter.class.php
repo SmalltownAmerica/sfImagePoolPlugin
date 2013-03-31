@@ -131,10 +131,10 @@ class ImagePoolImageMagickAdapter extends sfImageMagickAdapter
       }
       if(isset($this->options['sharpen']) && $targetMime == 'image/jpeg')
       {
-        $command .= ' -unsharp 1.5x1.2+0.7+0.10 ';
+        $command .= ' -unsharp ' . escapeshellarg($this->options['sharpen']);
       }
     }
-    
+
     if (isset($this->options['auto_orient']) && $this->options['auto_orient'])
     {
       $command .= ' -auto-orient ';
